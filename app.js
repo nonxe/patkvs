@@ -1,225 +1,197 @@
-// Tab Switching Logic for PDFs
-function switchTab(type) {
-    const tabPat = document.getElementById('tab-pat');
-    const tabEs = document.getElementById('tab-es');
-    const pdfTitle = document.getElementById('pdf-title');
-    const pdfSubtitle = document.getElementById('pdf-subtitle');
-    const pdfDownloadLink = document.getElementById('pdf-download-link');
-    const pdfOpenLink = document.getElementById('pdf-open-link');
-    const pdfFallbackLink = document.getElementById('pdf-fallback-link');
-    const pdfFrame = document.getElementById('pdf-frame');
+// ─── Tab Navigation ────────────────────────────
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('page-' + tab.dataset.page).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
 
-    if (type === 'pat') {
-        tabPat.classList.add('active');
-        tabEs.classList.remove('active');
-
-        pdfTitle.textContent = 'Physical_Activity_Trainer_XII.PDF';
-        pdfSubtitle.textContent = 'Tomorrow\'s Exam Focus: UNIT 1. ASSESSMENT OF STUDENTS';
-        
-        const path = 'pdfs/Physical_Activity_Trainer_XII.pdf';
-        pdfFrame.src = path + '#toolbar=1';
-        pdfDownloadLink.href = path;
-        pdfOpenLink.href = path;
-        pdfFallbackLink.href = path;
-
-    } else if (type === 'es') {
-        tabEs.classList.add('active');
-        tabPat.classList.remove('active');
-
-        pdfTitle.textContent = 'Employability_Skills_XII.PDF';
-        pdfSubtitle.textContent = 'Tomorrow\'s Exam Focus: COMMUNICATION SKILLS';
-
-        const path = 'pdfs/Employability_Skills_XII.pdf';
-        pdfFrame.src = path + '#toolbar=1';
-        pdfDownloadLink.href = path;
-        pdfOpenLink.href = path;
-        pdfFallbackLink.href = path;
-    }
-}
-
-// Interactive Practice Quiz Data (Focusing on Unit 1 Assessment & Communication Skills)
-const quizData = [
+// ─── MCQ Data ──────────────────────────────────
+const mcqData = [
     {
-        question: "What is the formula used to calculate Body Mass Index (BMI) for student physical assessments?",
-        options: [
-            "BMI = Weight (kg) / Height (m)",
-            "BMI = Weight (kg) / [Height (m)]²",
-            "BMI = [Weight (kg)]² / Height (m)",
-            "BMI = Height (cm) / Weight (kg)"
-        ],
-        answer: 1,
-        explanation: "Body Mass Index (BMI) is calculated by dividing body mass in kilograms by the square of body height in meters (kg/m²)."
+        q: "BMI is calculated by dividing weight in kg by —",
+        opts: ["Height in cm", "Height in m squared", "Height in m", "Weight in lbs"],
+        ans: 1
     },
     {
-        question: "Which of the following physical fitness tests is designed to evaluate minimum muscular strength of the abdominal and hip flexor muscles?",
-        options: [
-            "Kraus-Weber Test",
-            "50m Dash",
-            "Shuttle Run",
-            "Harvard Step Test"
-        ],
-        answer: 0,
-        explanation: "The Kraus-Weber Test consists of six items used to measure key trunk and hip flexor muscle strength."
+        q: "The Kraus-Weber test measures —",
+        opts: ["Cardiovascular endurance", "Minimum muscular strength", "Flexibility only", "Reaction time"],
+        ans: 1
     },
     {
-        question: "Which of the '7 Cs of Effective Communication' ensures that a message is specific and clear rather than vague?",
-        options: [
-            "Courteous",
-            "Concrete",
-            "Coherent",
-            "Complete"
-        ],
-        answer: 1,
-        explanation: "Concrete communication means being clear, specific, and backed by solid facts rather than general statements."
+        q: "Kyphosis is a deformity of the —",
+        opts: ["Knee", "Upper back (thoracic spine)", "Foot arch", "Neck"],
+        ans: 1
     },
     {
-        question: "In non-verbal communication, posture, eye contact, and facial expressions are collectively referred to as:",
-        options: [
-            "Body Language",
-            "Verbal Code",
-            "Semantic Noise",
-            "Linguistic Phonology"
-        ],
-        answer: 0,
-        explanation: "Body language encompasses all non-verbal signals transmitted through gestures, facial expressions, and physical posture."
+        q: "Shuttle run primarily tests —",
+        opts: ["Strength", "Endurance", "Agility", "Balance"],
+        ans: 2
     },
     {
-        question: "What is the primary objective of keeping systematic Fitness Record Cards for students in Physical Activity Training?",
-        options: [
-            "To grade overall academic performance only",
-            "To monitor student physical growth, identify postural deformities, and track fitness progress over time",
-            "To select students only for national competitions",
-            "To reduce physical education class hours"
-        ],
-        answer: 1,
-        explanation: "Fitness record cards provide longitudinal evaluation of height, weight, BMI, posture, and motor fitness parameters."
+        q: "600m run/walk test measures —",
+        opts: ["Speed", "Agility", "Cardiovascular endurance", "Flexibility"],
+        ans: 2
+    },
+    {
+        q: "Which is NOT one of the 7 Cs of communication?",
+        opts: ["Clear", "Creative", "Concise", "Courteous"],
+        ans: 1
+    },
+    {
+        q: "Body language falls under which type of communication?",
+        opts: ["Verbal", "Written", "Non-verbal", "Visual"],
+        ans: 2
+    },
+    {
+        q: "A semantic barrier in communication refers to —",
+        opts: ["Physical noise", "Language/meaning confusion", "Emotional bias", "Network issues"],
+        ans: 1
+    },
+    {
+        q: "Active listening involves —",
+        opts: ["Interrupting to clarify", "Paying full attention and giving feedback", "Only hearing words", "Taking notes silently"],
+        ans: 1
+    },
+    {
+        q: "Sit and Reach test measures —",
+        opts: ["Speed", "Lower back & hamstring flexibility", "Upper body strength", "Agility"],
+        ans: 1
     }
 ];
 
-let currentQuestion = 0;
-let score = 0;
-let selectedOption = null;
+// ─── PYQ Data ──────────────────────────────────
+const pyqData = [
+    {
+        q: "What is the ideal BMI range for a healthy individual?",
+        opts: ["14.5 – 17.5", "18.5 – 24.9", "25.0 – 29.9", "30.0 – 34.9"],
+        ans: 1
+    },
+    {
+        q: "Lordosis affects which region of the spine?",
+        opts: ["Cervical", "Thoracic", "Lumbar", "Sacral"],
+        ans: 2
+    },
+    {
+        q: "Flat foot is also known as —",
+        opts: ["Knock knee", "Bow leg", "Pes planus", "Scoliosis"],
+        ans: 2
+    },
+    {
+        q: "The 50m standing start test measures —",
+        opts: ["Flexibility", "Endurance", "Speed", "Coordination"],
+        ans: 2
+    },
+    {
+        q: "Partial curl-up test evaluates —",
+        opts: ["Arm strength", "Abdominal strength", "Leg power", "Balance"],
+        ans: 1
+    },
+    {
+        q: "Feedback in communication should be —",
+        opts: ["Delayed and vague", "Specific, timely, and constructive", "Only negative", "Given once a year"],
+        ans: 1
+    },
+    {
+        q: "Which is an example of visual communication?",
+        opts: ["Phone call", "Email", "Pie chart", "Voice note"],
+        ans: 2
+    },
+    {
+        q: "Psychological barriers include —",
+        opts: ["Poor lighting", "Technical jargon", "Anxiety and prejudice", "Distance between people"],
+        ans: 2
+    }
+];
 
-function loadQuizQuestion() {
-    const container = document.getElementById('quiz-container');
-    const progressBar = document.getElementById('quiz-progress-bar');
-    
-    // Update Progress Bar
-    const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
-    progressBar.style.width = `${progressPercent}%`;
+// ─── Quiz Engine ───────────────────────────────
+function createQuiz(containerId, data) {
+    const container = document.getElementById(containerId);
+    let current = 0;
+    let score = 0;
+    let answered = false;
 
-    const q = quizData[currentQuestion];
-    
-    container.innerHTML = `
-        <div class="quiz-question-box">
-            <span style="font-size: 0.85rem; color: var(--primary); font-weight: 600; text-transform: uppercase;">
-                Question ${currentQuestion + 1} of ${quizData.length}
-            </span>
-            <h3>${q.question}</h3>
-            <div class="quiz-options">
-                ${q.options.map((opt, idx) => `
-                    <button class="option-btn" onclick="selectOption(${idx})">
-                        <i class="fa-regular fa-circle" id="opt-icon-${idx}"></i>
-                        <span>${opt}</span>
-                    </button>
-                `).join('')}
+    function render() {
+        const d = data[current];
+        const pct = ((current) / data.length) * 100;
+
+        container.innerHTML = `
+            <div class="q-progress">
+                <span class="q-progress-text">${current + 1} / ${data.length}</span>
+                <span class="q-score">${score} correct</span>
             </div>
-            <div class="quiz-footer">
-                <div id="explanation-space"></div>
-                <button class="btn btn-primary" id="next-btn" onclick="submitAnswer()" disabled>
-                    Submit Answer &rarr;
-                </button>
+            <div class="q-bar-wrap"><div class="q-bar" style="width:${pct}%"></div></div>
+            <div class="q-body">
+                <div class="q-text">${d.q}</div>
+                <div class="q-options">
+                    ${d.opts.map((o, i) => `<button class="q-opt" data-i="${i}">${o}</button>`).join('')}
+                </div>
             </div>
-        </div>
-    `;
+            <div class="q-footer">
+                <button class="q-btn" id="${containerId}-next" disabled>Next</button>
+            </div>
+        `;
 
-    selectedOption = null;
-}
+        answered = false;
+        const opts = container.querySelectorAll('.q-opt');
+        const nextBtn = container.querySelector(`#${containerId}-next`);
 
-function selectOption(idx) {
-    const buttons = document.querySelectorAll('.option-btn');
-    buttons.forEach((btn, index) => {
-        btn.classList.remove('selected');
-        const icon = document.getElementById(`opt-icon-${index}`);
-        icon.className = 'fa-regular fa-circle';
-    });
+        opts.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (answered) return;
+                answered = true;
+                const idx = parseInt(btn.dataset.i);
 
-    buttons[idx].classList.add('selected');
-    document.getElementById(`opt-icon-${idx}`).className = 'fa-solid fa-circle-dot';
-    selectedOption = idx;
+                opts.forEach(b => b.disabled = true);
 
-    const nextBtn = document.getElementById('next-btn');
-    nextBtn.disabled = false;
-}
+                if (idx === d.ans) {
+                    btn.classList.add('correct');
+                    score++;
+                } else {
+                    btn.classList.add('wrong');
+                    opts[d.ans].classList.add('correct');
+                }
 
-function submitAnswer() {
-    const q = quizData[currentQuestion];
-    const buttons = document.querySelectorAll('.option-btn');
-    const explanationSpace = document.getElementById('explanation-space');
-    const nextBtn = document.getElementById('next-btn');
+                container.querySelector('.q-score').textContent = score + ' correct';
+                nextBtn.disabled = false;
+            });
+        });
 
-    // Disable options
-    buttons.forEach(btn => btn.style.pointerEvents = 'none');
-
-    if (selectedOption === q.answer) {
-        buttons[selectedOption].classList.add('correct');
-        score++;
-    } else {
-        buttons[selectedOption].classList.add('wrong');
-        buttons[q.answer].classList.add('correct');
+        nextBtn.addEventListener('click', () => {
+            if (current < data.length - 1) {
+                current++;
+                render();
+            } else {
+                showResult();
+            }
+        });
     }
 
-    explanationSpace.innerHTML = `
-        <div class="quiz-explanation">
-            <strong><i class="fa-solid fa-lightbulb"></i> Explanation:</strong> ${q.explanation}
-        </div>
-    `;
-
-    if (currentQuestion < quizData.length - 1) {
-        nextBtn.innerHTML = 'Next Question &rarr;';
-        nextBtn.onclick = () => {
-            currentQuestion++;
-            loadQuizQuestion();
-        };
-    } else {
-        nextBtn.innerHTML = 'See Final Score &rarr;';
-        nextBtn.onclick = showQuizResults;
-    }
-}
-
-function showQuizResults() {
-    const container = document.getElementById('quiz-container');
-    const percent = Math.round((score / quizData.length) * 100);
-
-    container.innerHTML = `
-        <div style="text-align: center; padding: 20px 0;">
-            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;">
-                <i class="fa-solid fa-trophy"></i>
+    function showResult() {
+        const pct = Math.round((score / data.length) * 100);
+        container.innerHTML = `
+            <div class="q-result">
+                <div class="q-result-score">${pct}%</div>
+                <div class="q-result-label">${score} out of ${data.length} correct</div>
+                <div class="q-result-msg">${pct >= 80 ? 'Well prepared.' : pct >= 50 ? 'Review the notes once more.' : 'Go through the PDFs again.'}</div>
+                <button class="q-btn-outline" id="${containerId}-retry">Try Again</button>
             </div>
-            <h3 style="font-size: 1.8rem; font-family: var(--font-heading); margin-bottom: 10px;">
-                Quiz Completed!
-            </h3>
-            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 20px;">
-                You scored <strong>${score} out of ${quizData.length}</strong> (${percent}%)
-            </p>
-            <p style="font-size: 0.95rem; color: var(--secondary); margin-bottom: 30px;">
-                ${percent >= 80 ? '🌟 Excellent! You are fully prepared for tomorrow\'s exam on Unit 1 & Communication Skills!' : '👍 Good effort! Review the notes above and attempt the quiz again.'}
-            </p>
-            <button class="btn btn-primary" onclick="restartQuiz()">
-                <i class="fa-solid fa-rotate-right"></i> Retake Practice Quiz
-            </button>
-        </div>
-    `;
+        `;
+        container.querySelector(`#${containerId}-retry`).addEventListener('click', () => {
+            current = 0;
+            score = 0;
+            render();
+        });
+    }
+
+    render();
 }
 
-function restartQuiz() {
-    currentQuestion = 0;
-    score = 0;
-    selectedOption = null;
-    loadQuizQuestion();
-}
-
-// Initialize on DOM ready
+// ─── Init ──────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    loadQuizQuestion();
+    createQuiz('mcq-container', mcqData);
+    createQuiz('pyq-container', pyqData);
 });
