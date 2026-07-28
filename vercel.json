@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "name": "patkvs",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/public/pdfs/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "inline"
+        }
+      ]
+    }
+  ]
+}
