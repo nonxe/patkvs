@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KVS Physical Education & Employability Skills Portal | Class XI & XII Exam Syllabus</title>
+    <meta name="description" content="Official Study Portal for Physical Activity Trainer (Unit 1: Assessment of Students) and Employability Skills (Communication Skills) for Class XII-A, XII-B, XI-A, XI-B.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar" id="announcement-banner">
+        <div class="container announcement-content">
+            <span class="pulse-badge"><i class="fa-solid fa-bell"></i> URGENT EXAM NOTICE</span>
+            <p class="announcement-text">
+                <strong>Attention Class XII-A, XII-B, XI-A & XI-B:</strong> The syllabus for tomorrow's exam is <strong>identical for all sections</strong>. 
+                Tomorrow's exam will cover <strong>UNIT 1: ASSESSMENT OF STUDENTS</strong> & <strong>COMMUNICATION SKILLS</strong>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <div class="logo-group">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-dumbbell"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>PAT <span>KVS</span> Portal</h1>
+                    <span class="sub-logo">Physical Education & Employability Skills</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#notice" class="nav-item active"><i class="fa-solid fa-bullhorn"></i> Notice</a>
+                <a href="#viewer" class="nav-item"><i class="fa-solid fa-book-open"></i> Read PDFs</a>
+                <a href="#study-notes" class="nav-item"><i class="fa-solid fa-file-pen"></i> Key Notes</a>
+                <a href="#quiz" class="nav-item"><i class="fa-solid fa-circle-question"></i> Practice Quiz</a>
+                <a href="#downloads" class="nav-item"><i class="fa-solid fa-download"></i> Downloads</a>
+            </nav>
+
+            <div class="action-buttons">
+                <a href="pdfs/Physical_Activity_Trainer_XII.pdf" download class="btn btn-primary-sm">
+                    <i class="fa-solid fa-download"></i> PDF 1
+                </a>
+                <a href="pdfs/Employability_Skills_XII.pdf" download class="btn btn-secondary-sm">
+                    <i class="fa-solid fa-download"></i> PDF 2
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="notice">
+            <div class="container hero-container">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-graduation-cap"></i> Examination Preparation Portal 2026
+                </div>
+                <h1 class="hero-title">
+                    Official Exam Syllabus & Study Hub<br>
+                    <span class="text-gradient">Class XII & XI Physical Education</span>
+                </h1>
+                <p class="hero-description">
+                    Welcome students of <strong>Class XII A, XII B, XI A, and XI B</strong>. Access official textbook PDFs, unit breakdowns, instant browser preview, key revision notes, and self-assessment quizzes for tomorrow's exam.
+                </p>
+
+                <!-- High Priority Syllabus Cards -->
+                <div class="syllabus-alert-grid">
+                    <div class="alert-card card-pat">
+                        <div class="card-tag">Physical Activity Trainer</div>
+                        <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h3>UNIT 1: ASSESSMENT OF STUDENTS</h3>
+                        <p>Tomorrow's Exam Topic: Student fitness testing, BMI calculation, posture assessment, motor fitness, and record keeping.</p>
+                        <div class="card-meta">
+                            <span><i class="fa-solid fa-file-pdf"></i> Official PDF Included</span>
+                            <button onclick="switchTab('pat')" class="link-btn">Open Unit 1 PDF &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div class="alert-card card-es">
+                        <div class="card-tag">Employability Skills</div>
+                        <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                        <h3>COMMUNICATION SKILLS</h3>
+                        <p>Tomorrow's Exam Topic: Verbal/non-verbal communication, 7 Cs, communication barriers, active listening, and email etiquette.</p>
+                        <div class="card-meta">
+                            <span><i class="fa-solid fa-file-pdf"></i> Official PDF Included</span>
+                            <button onclick="switchTab('es')" class="link-btn">Open Communication PDF &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive PDF Reader Section -->
+        <section class="viewer-section" id="viewer">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-book-reader"></i> Online Interactive PDF Reader</h2>
+                    <p>Read full chapters directly inside your browser or download for offline revision.</p>
+                </div>
+
+                <!-- Tab Controls -->
+                <div class="tab-controls">
+                    <button class="tab-btn active" id="tab-pat" onclick="switchTab('pat')">
+                        <i class="fa-solid fa-person-running"></i>
+                        <span>Physical Activity Trainer (Unit 1: Assessment)</span>
+                    </button>
+                    <button class="tab-btn" id="tab-es" onclick="switchTab('es')">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>Employability Skills (Communication Skills)</span>
+                    </button>
+                </div>
+
+                <!-- PDF Viewer Display Card -->
+                <div class="pdf-card">
+                    <div class="pdf-toolbar">
+                        <div class="pdf-info">
+                            <i class="fa-solid fa-file-pdf pdf-icon"></i>
+                            <div>
+                                <h4 id="pdf-title">Physical_Activity_Trainer_XII.PDF</h4>
+                                <span class="pdf-subtitle" id="pdf-subtitle">Featured Module: UNIT 1. ASSESSMENT OF STUDENTS</span>
+                            </div>
+                        </div>
+                        <div class="pdf-actions">
+                            <a id="pdf-download-link" href="pdfs/Physical_Activity_Trainer_XII.pdf" download class="btn btn-action">
+                                <i class="fa-solid fa-download"></i> Download PDF
+                            </a>
+                            <a id="pdf-open-link" href="pdfs/Physical_Activity_Trainer_XII.pdf" target="_blank" class="btn btn-action-outline">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Open In New Tab
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PDF Frame -->
+                    <div class="pdf-frame-container">
+                        <iframe id="pdf-frame" src="pdfs/Physical_Activity_Trainer_XII.pdf#toolbar=1" title="Syllabus PDF Viewer"></iframe>
+                        <div class="pdf-fallback" id="pdf-fallback">
+                            <p>If the PDF viewer does not load automatically on your mobile device, click below to open or download:</p>
+                            <a id="pdf-fallback-link" href="pdfs/Physical_Activity_Trainer_XII.pdf" target="_blank" class="btn btn-primary">
+                                <i class="fa-solid fa-file-pdf"></i> Open PDF Directly
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Study Notes & Syllabus Summary -->
+        <section class="notes-section" id="study-notes">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-lightbulb"></i> Quick Revision Summary for Tomorrow's Exam</h2>
+                    <p>High-yield topics extracted directly from Unit 1 & Communication Skills.</p>
+                </div>
+
+                <div class="notes-grid">
+                    <!-- Physical Activity Trainer Notes -->
+                    <div class="note-card">
+                        <div class="note-header pat-theme">
+                            <i class="fa-solid fa-calculator"></i>
+                            <div>
+                                <h3>Unit 1: Assessment of Students</h3>
+                                <span>Physical Activity Trainer (XII)</span>
+                            </div>
+                        </div>
+                        <div class="note-body">
+                            <div class="topic-item">
+                                <h4>1. Body Mass Index (BMI) & Growth Monitoring</h4>
+                                <p>Formula: <code>BMI = Weight (kg) / [Height (m)]²</code>. Used to evaluate body composition and assess underweight, normal, or obese parameters among school students.</p>
+                            </div>
+                            <div class="topic-item">
+                                <h4>2. Kraus-Weber Test & Posture Assessment</h4>
+                                <p>Tests minimum muscular strength of trunk and hip flexors. Measures abdominal strength, lower back flexibility, and identifies postural deformities like Lordosis, Kyphosis, and Flat Foot.</p>
+                            </div>
+                            <div class="topic-item">
+                                <h4>3. Motor Fitness & Physical Performance Tests</h4>
+                                <p>Includes 50m Standing Start (Speed), 600m Run/Walk (Endurance), Sit & Reach (Flexibility), Shuttle Run (Agility), and Partial Curl-up (Abdominal Strength).</p>
+                            </div>
+                            <div class="topic-item">
+                                <h4>4. Record Keeping & Fitness Progress Cards</h4>
+                                <p>Systematic recording of anthropometric measurements, fitness scores, and periodic health evaluation reports for tracking student growth.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employability Skills Notes -->
+                    <div class="note-card">
+                        <div class="note-header es-theme">
+                            <i class="fa-solid fa-comments"></i>
+                            <div>
+                                <h3>Module 1: Communication Skills</h3>
+                                <span>Employability Skills (XII)</span>
+                            </div>
+                        </div>
+                        <div class="note-body">
+                            <div class="topic-item">
+                                <h4>1. Methods of Communication</h4>
+                                <p>Verbal (Oral & Written), Non-Verbal (Body language, gestures, eye contact, posture), and Visual (Charts, graphs, diagrams, signage).</p>
+                            </div>
+                            <div class="topic-item">
+                                <h4>2. The 7 Cs of Effective Communication</h4>
+                                <p><strong>Clear, Concise, Concrete, Correct, Coherent, Complete, and Courteous</strong>. Ensures clear message delivery without misinterpretation.</p>
+                            </div>
+                            <div class="topic-item">
+                                <h4>3. Barriers to Communication</h4>
+                                <p>Environmental/Physical, Language/Semantic, Cultural, Psychological (Anxiety, prejudice), and Organizational structure barriers.</p>
+                            </div>
+                            <div class="topic-item">
+                                <h4>4. Active Listening & Feedback Mechanisms</h4>
+                                <p>Giving constructive feedback (Specific, timely, polite), overcoming listening barriers, and maintaining active eye contact during professional dialogue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Self-Assessment Quiz -->
+        <section class="quiz-section" id="quiz">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-pen-ruler"></i> Quick Exam Practice Quiz</h2>
+                    <p>Test your knowledge on Unit 1 Assessment & Communication Skills before tomorrow!</p>
+                </div>
+
+                <div class="quiz-card">
+                    <div class="quiz-progress">
+                        <div class="progress-bar" id="quiz-progress-bar"></div>
+                    </div>
+                    <div id="quiz-container">
+                        <!-- Questions dynamically loaded via app.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Center -->
+        <section class="downloads-section" id="downloads">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-folder-arrow-down"></i> Official PDF Download Center</h2>
+                    <p>Get single-click direct access to both official textbook materials.</p>
+                </div>
+
+                <div class="download-grid">
+                    <div class="download-card">
+                        <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                        <div class="dl-details">
+                            <h3>Physical Activity Trainer Class XII</h3>
+                            <p>Includes complete Unit 1: Assessment of Students, fitness testing protocols, and practical guidelines.</p>
+                            <span class="dl-size"><i class="fa-solid fa-hard-drive"></i> Size: 13.1 MB &bull; Format: PDF</span>
+                        </div>
+                        <a href="pdfs/Physical_Activity_Trainer_XII.pdf" download class="btn btn-primary">
+                            <i class="fa-solid fa-download"></i> Download PDF 1
+                        </a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                        <div class="dl-details">
+                            <h3>Employability Skills Class XII</h3>
+                            <p>Includes Communication Skills, Self-Management, ICT Skills, Entrepreneurship, and Green Skills.</p>
+                            <span class="dl-size"><i class="fa-solid fa-hard-drive"></i> Size: 488 KB &bull; Format: PDF</span>
+                        </div>
+                        <a href="pdfs/Employability_Skills_XII.pdf" download class="btn btn-secondary">
+                            <i class="fa-solid fa-download"></i> Download PDF 2
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 PAT KVS Educational Portal. Built for Class XII-A, XII-B, XI-A, & XI-B Students.</p>
+            <p class="footer-sub">All resources aligned with Physical Activity Trainer & Employability Skills curriculum.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

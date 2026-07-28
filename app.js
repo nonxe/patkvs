@@ -16,7 +16,7 @@ function switchTab(type) {
         pdfTitle.textContent = 'Physical_Activity_Trainer_XII.PDF';
         pdfSubtitle.textContent = 'Tomorrow\'s Exam Focus: UNIT 1. ASSESSMENT OF STUDENTS';
         
-        const path = 'public/pdfs/Physical_Activity_Trainer_XII.pdf';
+        const path = 'pdfs/Physical_Activity_Trainer_XII.pdf';
         pdfFrame.src = path + '#toolbar=1';
         pdfDownloadLink.href = path;
         pdfOpenLink.href = path;
@@ -29,7 +29,7 @@ function switchTab(type) {
         pdfTitle.textContent = 'Employability_Skills_XII.PDF';
         pdfSubtitle.textContent = 'Tomorrow\'s Exam Focus: COMMUNICATION SKILLS';
 
-        const path = 'public/pdfs/Employability_Skills_XII.pdf';
+        const path = 'pdfs/Employability_Skills_XII.pdf';
         pdfFrame.src = path + '#toolbar=1';
         pdfDownloadLink.href = path;
         pdfOpenLink.href = path;
